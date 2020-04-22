@@ -76,7 +76,7 @@ action :create do
     end
   end
 
-  timeout = timeout / 0.3
+  timeout = "timeout / 0.3"
   ruby_block 'wait for device' do
     block do
       count = 0
