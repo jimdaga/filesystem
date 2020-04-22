@@ -76,6 +76,7 @@ action :create do
     end
   end
 
+  timeout = timeout / 0.3
   ruby_block 'wait for device' do
     block do
       count = 0
@@ -83,7 +84,7 @@ action :create do
         count += 1
         sleep 0.3
         Chef::Log.debug "waiting for #{device} to exist, try # #{count}"
-        if count >= 1000
+        if count >= timeout
           # TODO: make this a paramater
           raise Timeout::Error, 'Timeout waiting for device'
         end
